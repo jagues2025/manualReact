@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Componentes en React</h1>
+    <p>En React, los componentes son las piezas fundamentales de la interfaz de usuario. Son funciones o clases que aceptan entradas (llamadas props) y devuelven un fragmento de la interfaz (usualmente JSX). Los componentes pueden ser funcionales o de clase, aunque hoy en día se prefieren los componentes funcionales debido a su simplicidad y la introducción de hooks en React.</p>
+    <h2>Tipos de Componentes</h2>
+    <p> <strong>Componentes Funcionales:</strong>  Son funciones simples que retornan JSX. No tienen estado o ciclo de vida, pero con los hooks, ahora pueden manejar estado y efectos secundarios.</p>
+    <pre><code>
+      
+        const Componente = () => {
+            return (
+                 &lt;div&gt;
+                     &lt;h1&gt;Hola Mundo &lt;/h1&gt;
+                 &lt;/div&gt;
+            );
+        }
+
+        export default Componente;
+    </code></pre>
+    <p> <strong>Componentes de Clase: </strong> Son clases de ES6 que extienden React.Component y tienen un método render que devuelve JSX. 🚫 <strong style="color: red;"> <u>Son más complejos, pero ahora se usan menos debido a la popularidad de los hooks</u> </strong> 🚫 </p>
+    <pre><code>
+
+        class Bienvenida extends React.Component {
+            render() {
+              return &lt;h1&gt;Hola, {this.props.nombre}!&lt;/h1&gt;;
+            }
+          }
+          
+    </code></pre>
+</body>
+</html>

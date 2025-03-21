@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual del Framework</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Barra de navegación */
+        nav {
+            background-color: #4CAF50;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 15px 20px;
+            display: block;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            background-color: #3e8e41;
+            border-radius: 8px;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            z-index: 100;
+        }
+
+        .submenu li {
+            width: 200px;
+        }
+
+        .submenu li a {
+            color: #333;
+            padding: 10px 15px;
+            font-weight: normal;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .submenu li a:hover {
+            background-color: #f4f4f9;
+            color: #4CAF50;
+        }
+
+        nav ul li:hover .submenu {
+            display: block;
+        }
+
+        /* Contenedor para cargar contenido dinámicamente */
+        #content {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: none; /* Ocultar por defecto */
+        }
+
+        #content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#" data-file="./introduccion/introduccion.html">Introducción</a></li>
+            <li>
+                <a href="#" data-file="./instalacion/requisitos.html">Instalación</a>
+                <ul class="submenu">
+                    <li><a href="#" data-file="./instalacion/requisitos.html">Requisitos</a></li>
+                    <li><a href="#" data-file="./instalacion/crearproyecto.html">Crear un proyecto con vite</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="#" data-file="./conceptos basicos/basesjsx.htm">Conceptos Básicos</a>
+                <ul class="submenu">
+                    <li><a href="#" data-file="./conceptos basicos/basesjsx.htm">Bases en JSX</a></li>
+                    <li><a href="#" data-file="./conceptos basicos/interpolacionjsx.html">Interpolacion</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" data-file="./renderizado/renderizadoCondicional.html">Renderizado</a>
+                <ul class="submenu">
+                    <li><a href="#" data-file="./renderizado/renderizadoCondicional.html">Renderizado condicional</a></li>
+                    <li><a href="#" data-file="./renderizado/renderizadoListas.html">Renderizado de listas</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" data-file="componentes.html">Componentes</a>
+                <ul class="submenu">
+                    <li><a href="#" data-file="./componentes/componentes.html">Componentes react</a></li>
+                    <li><a href="#" data-file="vistas.html">Props</a></li>
+                    <li><a href="#" data-file="hooks.html">Hooks basicos</a></li>
+                </ul>
+            </li>
+            <li><a href="#" data-file="avanzado.html">Uso Avanzado</a></li>
+            <li><a href="#" data-file="recursos.html">Recursos</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenedor dinámico -->
+    <div id="content" class="active">
+        <h1>¿Qué es React?</h1>
+        <p>React es una biblioteca Javascript para crear interfaces de usuario.</p>
+        <p>React no es un framework (a diferencia de Angular o Vue, que tienen más opiniones).</p>
+        <p>React es un proyecto de código abierto creado por Facebook.</p>
+        <p>Está basado en componentes.</p>
+    </div>
+
+    <script>
+        // Seleccionar el contenedor para cargar el contenido dinámico
+        const content = document.getElementById('content');
+        // Asignar eventos a los enlaces
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault(); // Evitar el comportamiento predeterminado del enlace
+                
+                
+                // Obtener el archivo a cargar desde el atributo data-file
+                const file = this.getAttribute('data-file');
+                console.log(file);
+                
+                
+                // Cargar el contenido del archivo HTML
+                fetch(file)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Error al cargar el archivo.');
+                        return response.text();
+                    })
+                    .then(html => {
+                        // Reemplazar el contenido dinámico
+                        content.innerHTML = html;
+                       
+                        
+                        content.classList.add('active'); // Mostrar el contenedor
+                        cargar();
+                    })
+                    .catch(error => {
+                        content.innerHTML = `<p>Error al cargar el contenido: ${error.message}</p>`;
+                        content.classList.add('active'); // Mostrar el contenedor con el mensaje de error
+                    });
+            });
+        });
+
+        function cargar(){
+            hljs.highlightAll();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interpolacion</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h1>
+                ¿Qué es la interpolación en React?
+            </h1>
+            <p>La interpolación en React es el proceso de insertar valores dinámicos (como variables, expresiones o
+                resultados de funciones) dentro de JSX. Esto se logra utilizando llaves {} dentro del JSX.
+                Las llaves permiten incluir cualquier expresión de JavaScript válida, como variables, operaciones
+                matemáticas, resultados de funciones, etc.</p>
+            <h1>
+                Reglas Básicas de Interpolación
+            </h1>
+            <p> 1. Las llaves {} se usan para encapsular expresiones de JavaScript.
+            </p>
+            <p>2. Solo se pueden usar dentro del JSX (no fuera de él).</p>
+            <p>
+                3. No funcionan para declaraciones completas como if o for (usa ternarios o métodos como .map() para
+                eso).
+            </p>
+        </div>
+        <div>
+            <h2>Ejemplo 1</h2>
+            <pre><code>
+                function App() {
+                    const name = "Miguel";
+                    const age = 25;
+                  
+                    return (
+                      &lt;div&gt;
+                        &lt;h1&gt;Hola, {name}!&lt;/h1&gt;
+                        &lt;p&gt;Tienes {age} años.&lt;/p&gt;
+                      &lt;/div&gt;
+                    );
+                  }
+                  
+                  export default App;
+            </code></pre>
+        </div>
+        <div>
+            <h2>Ejemplo 2</h2>
+            <pre><code>
+                function App() {
+                    const isLoggedIn = false;
+                    const userName = "Miguel";
+                  
+                    return (
+                      &lt;div&gt;
+                        &lt;h1&gt;{isLoggedIn ? `Hola, ${userName}` : "Por favor, inicia sesión"}&lt;/h1&gt;
+                        {isLoggedIn && &lt;p&gt;¡Nos alegra verte de nuevo!&lt;/p&gt;}
+                      &lt;/div&gt;
+                    );
+                  }
+                  
+                  export default App;
+            </code></pre>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                hljs.highlightAll(); // Resalta todos los bloques de código en la página
+            });
+        </script>
+    </div>
+</body>
+
+</html>

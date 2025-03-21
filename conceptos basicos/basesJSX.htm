@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bases de JSX (React)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
+</head>
+<body>
+    <div>
+        <div>
+            <h1>Uso del Fragment en React</h1>
+            <p>En React, un Fragment (React.Fragment o su versión corta <>) permite agrupar múltiples elementos hijos sin añadir un nodo extra al DOM. Esto es útil cuando no quieres que el contenedor afecte el diseño o el rendimiento de tu aplicación</p>
+            <p>Un Fragment puede tener atributos como cualquier otro elemento de React. Un uso común es con la propiedad key para asignar una clave a los fragmentos creados dinámicamente</p>
+            <h2>Por que usar Fragment</h2>
+            <p>Por defecto, JSX necesita que el contenido dentro de un componente esté envuelto en un único contenedor. Si no necesitas un contenedor como un &lt;div&gt; (que crea un nodo en el DOM), puedes usar un Fragment para evitarlo.</p>
+            <pre><code class="language-javascript">
+                function App() {
+                    return (
+                      &lt;Fragment&gt;
+                        &lt;h1&gt;Título principal&lt;/h1&gt;
+                        &lt;p&gt;Este es un párrafo adicional.&lt;/p&gt;
+                      &lt;Fragment/&gt;
+                    );
+                  }
+                  
+                  export default App;
+            </code></pre>
+            <h4>Esto es lo mismo que el anterior codigo</h4>
+            <pre><code class="language-javascript">
+                function App() {
+                    return (
+                      &lt;&gt; // Este es la abreviatura del Fragment
+                        &lt;h1&gt;Título principal&lt;/h1&gt;
+                        &lt;p&gt;Este es un párrafo adicional.&lt;/p&gt;
+                      &lt;/&gt;
+                    );
+                  }
+                  
+                  export default App;
+            </code></pre>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                hljs.highlightAll(); // Resalta todos los bloques de código en la página
+                console.log("Página cargada");
+            });
+        </script>
+    </div>
+</body>
+</html>

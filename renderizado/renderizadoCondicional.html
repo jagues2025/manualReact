@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renderizado Condicional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <div>
+            <h1>Renderizado condicional a traves del ternario</h1>
+            <p>Vamos hacer un ejemplo de como renderizar una parte de HTML segun una condicion a traves de un condcional
+                ternario que manejamos en JavaScript</p>
+            <p>El ejemplo trata de una viariable que maneja la edad y si es mayor de edad o menor de edad</p>
+            <pre><code class="language-javascript">
+            import React from 'react'
+            import { Fragment } from 'react'
+            
+            export default function App() {
+            
+              let edad = 18
+            
+              return (
+                &lt;&gt;
+                  &lt;div&gt;
+                    &lt;h1&gt;Renderizado Condicional a traves de funcion&lt;/h1&gt;
+                    {edad &gt;= 18 ? &lt;h2&gt;Eres mayor de edad&lt;/h2&gt; : &lt;h2&gt;Eres menor de edad&lt;/h2&gt;}
+                  &lt;/div&gt;
+                &lt;/&gt;
+              )
+            }
+        </code></pre>
+        </div>
+        <div>
+            <h1>Renderizado condicional a traves de una funcion</h1>
+            <p>Vamos hacer un ejemplo de como renderizar una parte de HTML segun una condicion a traves de un condicional
+                clasico que retorna un valor HTML dentro de una funcion que manejamos en JavaScript</p>
+            <p>El ejemplo trata de una viariable que maneja la edad y si es mayor de edad o menor de edad</p>
+            <pre><code class="language-javascript">
+                import React from 'react'
+                import { Fragment } from 'react'
+                export default function App() {
+                
+                  let edad = 18
+                  let content=""
+                
+                  // Funcion que devuelve un contenido html de acuerdo al estado que evalua el condicional
+                  function contenido(){
+                    if (edad>=18){
+                       return content = &lt;h2&gt;Eres mayor de edad&lt;/h2&gt;
+                    }else{
+                      return content = &lt;h2&gt;Eres menor de edad&lt;/h2&gt;
+                    }
+                  }
+                  
+                  return (
+                    &lt;&gt;
+                      &lt;div&gt;
+                        &lt;h1&gt;Renderizado Condicional clasico a traves de una funcion&lt;/h1&gt;
+                        {contenido()}
+                      &lt;/div&gt;
+                    &lt;/&gt;
+                  )
+                }
+        </code></pre>
+        </div>
+        <div>
+            <h1>Renderizado con Operador Lógico &&</h1>
+            <p>Vamos hacer un ejemplo de como renderizar una parte de HTML segun una condicion a traves de un operador
+                logico && se usa solo cuando queremos mostrar la parte verdadera</p>
+            <pre><code>
+              import React from 'react'
+              import { Fragment } from 'react'
+              
+              export default function App() {
+              
+                let edad = 18
+                let content=""
+              
+                return (
+                  &lt;>
+                    &lt;div&gt;
+                      &lt;h1&gt;Renderizado Condicional con operador logico &&&lt;/h1&gt;
+                      {edad >= 18 && &lt;h2&gt;Eres mayor de edad&lt;/h2&gt;}
+                    &lt;/div&gt;
+                  &lt;/&gt;
+                )
+              } 
+            </code></pre>
+            <h2>Ejemplo 2</h2>
+            <pre><code>
+              function App() {
+                const isLoggedIn = true;
+                const userName = "Miguel";
+              
+                return (
+                  &lt;div&gt;
+                    &lt;h1&gt;{isLoggedIn ? `Hola, ${userName}` : "Por favor, inicia sesión"}&lt;/h1&gt;
+                    {isLoggedIn && &lt;p&gt;¡Nos alegra verte de nuevo!&lt;/p&gt;}
+                  &lt;/div&gt;
+                );
+              }
+              
+              export default App;
+            </code></pre>
+            
+        </div>
+        <div>
+          <h1>En React, cuando necesitas renderizar un condicional con varias líneas de HTML, puedes usar:</h1>
+          <ol>
+            <li><strong>Un operador ternario</strong> dentro de () para retornar múltiples líneas.</li>
+            <li><strong>Una estructura if antes del</strong> return para definir qué renderizar.</li>
+            <li><strong>Un componente separado</strong> Un componente separado para manejar la lógica condicional.</li>
+          </ol>
+          <h2>Ejemplo 1: Usando operador ternario con ()</h2>
+          <p>Si el usuario está autenticado, se muestra su perfil; de lo contrario, se muestra un mensaje de inicio de sesión.</p>
+          <pre><code>
+            function App() {
+              const isLoggedIn = false;
+            
+              return (
+                &lt;div&gt;
+                  {isLoggedIn ? (
+                    &lt;div&gt;
+                      &lt;h1&gt;Bienvenido, Usuario&lt;/h1&gt;
+                      &lt;p&gt;Nos alegra verte de nuevo.&lt;/p&gt;
+                    &lt;/div&gt;
+                  ) : (
+                    &lt;div&gt;
+                      &lt;h1&gt;Acceso Denegado&lt;/h1&gt;
+                      &lt;p&gt;Por favor, inicia sesión para continuar.&lt;/p&gt;
+                    &lt;/div&gt;
+                  )}
+                &lt;/div&gt;
+              );
+            }
+            
+            export default App;
+            
+          </code></pre>
+          <strong> 💡Clave: Se usa parentesis () para agrupar varias líneas dentro del ternario. ❗❗</strong><br>
+
+          <h2>Ejemplo 2: Usando una estructura if antes del return</h2>
+          <p>En este caso, se define la variable content antes del return.</p>
+          <pre><code>
+            function App() {
+              const isLoggedIn = true;
+              let content;
+            
+              if (isLoggedIn) {
+                content = (
+                  &lt;div&gt;
+                    &lt;h1&gt;Bienvenido, Usuario&lt;/h1&gt;
+                    &lt;p&gt;Nos alegra verte de nuevo.&lt;/p&gt;
+                  &lt;/div&gt;
+                );
+              } else {
+                content = (
+                  &lt;div&gt;
+                    &lt;h1&gt;Acceso Denegado&lt;/h1&gt;
+                    &lt;p&gt;Por favor, inicia sesión para continuar.&lt;/p&gt;
+                  &lt;/div&gt;
+                );
+              }
+            
+              return &lt;div&gt;{content}&lt;/div&gt;;
+            }
+            
+            export default App;
+            
+          </code></pre>
+          <strong>💡 Clave: Definimos el contenido antes del return y lo usamos en JSX. ❗❗</strong><br>
+        </div>
+        <div>
+          <h2>Ejemplo 3: Usando un componente separado</h2>
+          <p>Cuando la estructura es grande, es mejor crear un componente separado.</p>
+          <pre><code>
+            function UserProfile() {
+              return (
+                &lt;div&gt;
+                  &lt;h1&gt;Bienvenido, Usuario&lt;/h1&gt;
+                  &lt;p&gt;Nos alegra verte de nuevo.&lt;/p&gt;
+                &lt;/div&gt;
+              );
+            }
+            
+            function GuestMessage() {
+              return (
+                &lt;div&gt;
+                  &lt;h1&gt;Acceso Denegado&lt;/h1&gt;
+                  &lt;p&gt;Por favor, inicia sesión para continuar.&lt;/p&gt;
+                &lt;/div&gt;
+              );
+            }
+            
+            function App() {
+              const isLoggedIn = false;
+            
+              return &lt;div&gt;{isLoggedIn ? &lt;UserProfile /&gt; : &lt;GuestMessage /&gt;}&lt;/div&gt;;
+            }
+            
+            export default App;
+            
+          </code></pre>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                hljs.highlightAll(); // Resalta todos los bloques de código en la página
+            });
+        </script>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
+</head>
+<body>
+    <div>
+        <h1>Renderizado de listas</h1>
+        <p>En este ejemplo, estamos iterando sobre el array frutas con map() y generando un &lt;li&gt; por cada fruta.</p>
+        <p>Nota: El key={index} ayuda a React a identificar cada elemento de manera única, pero si tienes un id único en los datos, es mejor usarlo en lugar del índice.</p>
+        <pre><code>
+            import React from "react";
+
+                function ListaFrutas() {
+                const frutas = ["Manzana", "Banana", "Naranja", "Uva"];
+
+                return (
+                    &lt;ul&gt;
+                    {frutas.map((fruta, index) =&gt; (
+                        &lt;li key={index}&gt;{fruta}&lt;/li&gt;
+                    ))}
+                    &lt;/ul&gt;
+                );
+                }
+
+                export default ListaFrutas;
+
+        </code></pre>
+
+        <p>Vamos hacer el renderizado de la lista dentro de una funcion a traves de la funcion .map y despues llamamos la funcion</p>
+
+        <pre><code>
+            const App = () => {
+                const fruts = ["🍐", "🍌", "🍎"]; //Array de frutas
+          
+                function listaFrutas(){
+                  return fruts.map((frut, index) => {
+                    return &lt;li key={index}&gt;{frut}&lt;/li&gt;;
+                  })
+                }
+          
+                return (
+                  &lt;div className="container"&gt;
+                    &lt;ul&gt;
+                      {listaFrutas()}
+                    &lt;/ul&gt;
+                  &lt;/div&gt;
+                );
+              };
+              
+              export default App;
+        </code></pre>
+
+        <h2>Ejemplo con objetos y una clave única</h2>
+        <p>Si los elementos vienen como objetos con una propiedad id, se recomienda usar ese id como clave (key).</p>
+        <p><strong>Ventaja de usar id como key:</strong> React puede optimizar la actualización de la lista sin re-renderizar innecesariamente los elementos.</p>
+
+        <pre><code>
+            import React from "react";
+
+                function ListaUsuarios() {
+                const usuarios = [
+                    { id: 1, nombre: "Ana" },
+                    { id: 2, nombre: "Juan" },
+                    { id: 3, nombre: "Carlos" }
+                ];
+
+                return (
+                    &lt;ul&gt;
+                    {usuarios.map((usuario) =&gt; (
+                        &lt;li key={usuario.id}&gt;{usuario.nombre}&lt;/li&gt;
+                    ))}
+                    &lt;/ul&gt;
+                );
+                }
+
+                export default ListaUsuarios;
+
+        </code></pre>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                hljs.highlightAll(); // Resalta todos los bloques de código en la página
+            });
+        </script>
+    </div>
+</body>
+</html>
