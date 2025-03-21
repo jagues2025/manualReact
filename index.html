@@ -94,6 +94,17 @@
             display: none; /* Ocultar por defecto */
         }
 
+        @media (max-width: 600px){
+            #content {
+                padding: 20px 10px;
+                width: 100%;
+                overflow: scroll;
+            }
+            nav ul{
+                flex-direction: column;
+            }
+        }
+
         #content.active {
             display: block;
         }
