@@ -1,11 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <div>
+        <h1>Props en React</h1>
+        <p>En React, los props son como argumentos que le pasas a una función, pero en el contexto de los componentes.
+            Son objetos que contienen información y se utilizan para enviar datos desde un componente padre a un
+            componente hijo.</p>
+        <h2>¿Para qué sirven los props?</h2>
+        <ol>
+            <li> <strong>Comunicación entre componentes:</strong> Son la principal forma en que los componentes padres
+                pueden "hablar" con sus componentes hijos, enviándoles la información que necesitan para renderizarse o
+                funcionar correctamente.</li><br>
+            <li>Personalización y reutilización de componentes: Los props permiten que un mismo componente hijo pueda
+                mostrar información diferente dependiendo de los props que le envíe su componente padre. Esto hace que
+                los componentes sean más dinámicos y reutilizables en diferentes partes de la aplicación. <br>
+            <li> <strong>Control del comportamiento de los componentes hijos:</strong> Los componentes padres pueden
+                usar props para controlar cómo se comportan sus componentes hijos. Por ejemplo, podrían pasar un prop
+                booleano para indicar si un botón debe estar habilitado o deshabilitado.</li>
+        </ol>
+        <p> <strong>En resumen:</strong><br>
+            Los props son fundamentales en React porque permiten la transferencia de datos unidireccional desde los
+            componentes padres hacia los componentes hijos, lo que facilita la creación de interfaces de usuario
+            dinámicas, reutilizables y bien organizadas. Piensa en ellos como los parámetros que configuran cómo se
+            comporta y qué muestra un componente hijo.</p>
+            <h2>Componente Padre</h2>
+            <pre><code>
+
+                import React from 'react';
+                import Saludo from './Saludo'; // Asegúrate de que el archivo Saludo.js exista en la misma carpeta o en la ubicación correcta
+                
+                function App() {
+                  const nombre = "María";
+                
+                  return (
+                    &lt;div&gt;
+                      &lt;Saludo nombre={nombre} /&gt;
+                      &lt;Saludo nombre="Pedro" /&gt; {/* Puedes enviar diferentes props al mismo componente */}
+                    &lt;/div &gt;
+                  );
+                }
+                
+                export default App;
+                  
+            </code></pre>
+            <h2>Componente Hijo</h2>
+            <pre><code>
+                import React from 'react';
+                
+                function Saludo(props) {
+                  return &lt;h1&gt;Hola, {props.nombre}!&lt;/h1&gt;;
+                }
+                
+                export default Saludo;
+            </code></pre>
+            <h2>Explicacion</h2>
+            <ul>
+                <li> <strong>Paso de Props: </strong> En el componente App, estamos pasando el prop nombre al componente Saludo utilizando la sintaxis de atributos HTML: <Saludo nombre={nombre} /></li>
+                <li><strong>Recepción de Props: </strong> En el componente Saludo, la función recibe un objeto llamado props como argumento. Podemos acceder al valor del prop nombre utilizando props.nombre.</li>
+                <li> <strong>Renderizado:</strong> El componente Saludo utiliza el valor del prop nombre para renderizar el saludo dinámicamente.</li>
+                <li><strong>Reutilización:</strong> Puedes reutilizar el componente Saludo con diferentes valores de props, como se muestra en el segundo uso del componente en App.</li>
+                <li><strong>Unidireccionalidad:</strong> Los props fluyen de arriba hacia abajo, es decir, del componente padre al hijo. No puedes modificar los props dentro del componente hijo.</li>
+
+            </ul>
+
+    </div>
 </body>
+
 </html>
